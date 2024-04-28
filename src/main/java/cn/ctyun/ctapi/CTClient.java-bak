@@ -1,0 +1,56 @@
+package cn.ctyun.ctapi;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class CTClient {
+
+    private Credential credential;
+    private String endingPoint;
+
+    public void init(Credential credential, String endingPoint) {
+        this.credential = credential;
+        this.endingPoint = endingPoint;
+    }
+
+    protected <T> CTResponse<T> request(CTRequest request, Class<T> clazz) {
+        return  HttpUtils.request(credential, endingPoint, request, clazz);
+    }
+
+//    public static void main(String[] args) {
+//        CTClient client = new CTClient();
+//        Credential credential = new Credential();
+//        credential.withAk("4a4bdc57e06542199b5f98d4cd107be2");
+//        credential.withSk("5566ddcc9b1646c6b77a0eaeff1c8763");
+//        client.init(credential, "ecpc-sh6-a.ctapi-test.ctyun.cn");
+//
+//        CTRequest request = new CTRequest("get", "application/json", "/v2/desktopTemplate/describe");
+//        client.request(request, Object.class);
+
+
+//        CTClient client = new CTClient();
+//        Credential credential = new Credential();
+//        credential.withAk("d9912b01fd02414fad5ddd96be4010d0");
+//        credential.withSk("217fd48fe9dc41ec9a51fe00ddcd394c");
+//        client.init(credential ,"ccr-global.ctapi-test.ctyun.cn");
+//
+//        CTRequest request = new CTRequest("post","multipart/form-data","/v2/ccr/chart/upload");
+//        Map<String, Object> queryParam = new HashMap<>();
+//        queryParam.put("projectName","test");
+//        queryParam.put("regionID","d0dc8ddc8e3e11eca6200242ac110003");
+//        request.queryParam = queryParam;
+//
+//
+//        Map<String, Object> bodyParam=new HashMap<>();
+//        CTFile ctFile1 = new CTFile();
+//        ctFile1.setPath("C:\\Users\\12523\\Desktop\\airflow-1.6.0.tgz");
+//        bodyParam.put("chart",ctFile1);
+//        CTFile ctFile2 = new CTFile();
+//        ctFile2.setPath("C:\\Users\\12523\\Desktop\\airflow-1.6.0.tgz.prov");
+//        bodyParam.put("prov",ctFile2);
+//        bodyParam.put("zz","zzzz");
+//        bodyParam.put("xx","xxxx");
+//        request.bodyParam = bodyParam;
+//        client.request(request, Object.class);
+//    }
+}
